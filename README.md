@@ -29,6 +29,11 @@ dependencies {
 ### Example ###
 
 ```java
+DiffMatchPatch dmp = new DiffMatchPatch();
+LinkedList<Diff> diffs = dmp.diff_main(oldText, newText);
+
+...
+
 int snippetOffset = 50, start, end;
 
 // get a snippet of the deleted content (diff text plus some
