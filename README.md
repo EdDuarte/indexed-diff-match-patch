@@ -40,15 +40,15 @@ for (Diff d : diffs) {
 
     if (d.getOperation().equals(DiffMatchPatch.Operation.INSERT)) {
 
-        // for diffs with operation 'INSERT', the snippet is a substring
-        // on the newText
+        // for diffs with operation 'INSERT', the snippet is a
+        // substring of the newText
         String snippet = newText.substring(start, end);
 
     } else if (d.getOperation().equals(DiffMatchPatch.Operation.DELETE) ||
                d.getOperation().equals(DiffMatchPatch.Operation.EQUAL)) {
 
         // for diffs with operation 'DELETE' or 'EQUAL', the snippet is a
-        // substring on the oldText
+        // substring of the oldText
         String snippet = oldText.substring(start, end);
 
     }
