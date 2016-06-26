@@ -260,7 +260,7 @@
                                     <goal>sign</goal>
                                 </goals>
                                 <configuration>
-                                    <keyname>F92B72C4</keyname>
+                                    <keyname>5115512B</keyname>
                                 </configuration>
                             </execution>
                         </executions>
