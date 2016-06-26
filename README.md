@@ -31,16 +31,16 @@ dependencies {
 ```java
 int snippetOffset = 50, start, end;
 
-// get a snippet of the deleted content (diff
-// text plus some surrounding text for context)
-start = deletedDiff.startIndex() - snippetOffset;
-end = deletedDiff.endIndex() + snippetOffset;
+// get a snippet of the deleted content (diff text plus some
+// surrounding text for context)
+start = deletedDiff.getStartIndex() - snippetOffset;
+end = deletedDiff.getEndIndex() + snippetOffset;
 String deletedDiffSnippet = oldText.substring(start, end);
 
-// get a snippet of the inserted content (diff
-// text plus some surrounding text for context)
-start = insertedDiff.startIndex() - snippetOffset;
-end = insertedDiff.endIndex() + snippetOffset;
+// get a snippet of the inserted content (diff text plus some
+// surrounding text for context)
+start = insertedDiff.getStartIndex() - snippetOffset;
+end = insertedDiff.getEndIndex() + snippetOffset;
 String insertedDiffSnippet = newText.substring(start, end);
 ```
 
