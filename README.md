@@ -6,7 +6,7 @@ This is a fork of that project that changes multiple parts of the algorithm so t
 
 The main idea behind this change is to allow a quick retrieval of the difference as-is in the original documents, and the developer can use this value to collect a snippet of the contents surrounding the difference.
 
-All of the required changes to add the string index values where made into a single commit, so if you wish to check the changes and adapt them to other languages that the original project supported, check here: TODO
+All of the required changes to add the string index values where made into a single commit, so if you wish to check the changes and adapt them to other languages that the original project supported, check here: https://github.com/edduarte/indexed-diff-match-patch/commit/45132be9ac6246a7cb8f574fd26f90bf02d1b294
 
 ## Usage ##
 

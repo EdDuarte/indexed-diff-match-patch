@@ -890,11 +890,11 @@ public class DiffMatchPatchTest extends TestCase {
   private static String[] diff_rebuildtexts(LinkedList<Diff> diffs) {
     String[] text = {"", ""};
     for (Diff myDiff : diffs) {
-      if (myDiff.operation != DiffMatchPatch.Operation.INSERT) {
-        text[0] += myDiff.text;
+      if (myDiff.getOperation() != DiffMatchPatch.Operation.INSERT) {
+        text[0] += myDiff.getText();
       }
-      if (myDiff.operation != DiffMatchPatch.Operation.DELETE) {
-        text[1] += myDiff.text;
+      if (myDiff.getOperation() != DiffMatchPatch.Operation.DELETE) {
+        text[1] += myDiff.getText();
       }
     }
     return text;
