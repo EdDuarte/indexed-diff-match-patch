@@ -1,29 +1,50 @@
 # Indexed DiffMatchPatch in Java
 
-The Diff, Match and Patch Library, originally developed by Neil Fraser and hosted at http://code.google.com/p/google-diff-match-patch/, is a library for detecting in-line text differences (added, deleted and unchanged).
+The Diff, Match and Patch Library, originally developed by Neil Fraser and hosted at http://code.google.com/p/google-diff-match-patch/, is a library for detecting in-line text differences (inserted, deleted and unchanged).
 
-This is a fork of that project that changes multiple parts of the algorithm so that the differences returned hold a startIndex value. The main idea behind this change is to allow a quick retrieval of the difference as-is in the original document or in the edited document. The developer can use this value to collect a snippet of the contents surrounding the difference, using for example:
+This is a fork of that project that changes multiple parts of the algorithm so that **the diffs returned have startIndex and endIndex values**.
+
+The main idea behind this change is to allow a quick retrieval of the difference as-is in the original documents, and the developer can use this value to collect a snippet of the contents surrounding the difference.
+
+All of the required changes to add the string index values where made into a single commit, so if you wish to check the changes and adapt them to other languages that the original project supported, check here: TODO
+
+## Usage ##
+
+### Maven ###
+```
+<dependency>
+    <groupId>com.edduarte</groupId>
+    <artifactId>diff-match-patch</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+### Gradle ###
+```
+dependencies {
+    compile 'com.edduarte:diff-match-patch:1.0.0'
+}
+```
+
+### Example ###
+
 ```java
-String oldText;
-String newText;
-Diff deletedDiff;
-Diff addedDiff;
-int snippetOffset = 50;
+int snippetOffset = 50, start, end;
 
-// get a snippet of the deleted content along with some surrounding text for context
-int start = deletedDiff.startIndex - snippetOffset;
-int end = deletedDiff.startIndex + deletedDiff.length() + snippetOffset;
+// get a snippet of the deleted content (diff
+// text plus some surrounding text for context)
+start = deletedDiff.startIndex() - snippetOffset;
+end = deletedDiff.endIndex() + snippetOffset;
 String deletedDiffSnippet = oldText.substring(start, end);
 
-// get a snippet of the added content along with some surrounding text for context
-start = addedDiff.startIndex - snippetOffset;
-end = addedDiff.startIndex + addedDiff.length() + snippetOffset;
-String addedDiffSnippet = newText.substring(start, end);
+// get a snippet of the inserted content (diff
+// text plus some surrounding text for context)
+start = insertedDiff.startIndex() - snippetOffset;
+end = insertedDiff.endIndex() + snippetOffset;
+String insertedDiffSnippet = newText.substring(start, end);
 ```
 
 This has only been implemented for Java (my primary use-case). You can see this fork in use at https://github.com/vokter/vokter-core.
-
-All of the required changes to add this index where made into a single commit, so if you wish to check the changes and adapt them to other languages that the original project supported, check here: TODO
 
 
 # License

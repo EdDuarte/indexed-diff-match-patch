@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-package name.fraser.neil.plaintext;
+package com.edduarte;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -45,7 +45,7 @@ import java.util.regex.Pattern;
  * Class containing the diff, match and patch methods.
  * Also contains the behaviour settings.
  */
-public class diff_match_patch {
+public class DiffMatchPatch {
 
   // Defaults.
   // Set these on your diff_match_patch instance to override the defaults.
