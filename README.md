@@ -38,12 +38,20 @@ for (Diff d : diffs) {
     int start = d.getStartIndex() - snippetOffset;
     int end = d.getEndIndex() + snippetOffset;
 
-    // for diffs with operation 'DELETE', the snippet is a substring on the oldText
-    String deletedDiffSnippet = oldText.substring(start, end);
+    if (d.getOperation().equals(DiffMatchPatch.Operation.INSERT)) {
 
-    // for diffs with operation 'INSERT', the snippet is a substring on the newText
-    String insertedDiffSnippet = newText.substring(start, end);
+        // for diffs with operation 'INSERT', the snippet is a substring
+        // on the newText
+        String snippet = newText.substring(start, end);
 
+    } else if (d.getOperation().equals(DiffMatchPatch.Operation.DELETE) ||
+               d.getOperation().equals(DiffMatchPatch.Operation.EQUAL)) {
+
+        // for diffs with operation 'DELETE' or 'EQUAL', the snippet is a
+        // substring on the oldText
+        String snippet = oldText.substring(start, end);
+
+    }
 }
 ```
 
