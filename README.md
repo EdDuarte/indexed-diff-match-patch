@@ -1,16 +1,18 @@
 # Indexed DiffMatchPatch in Java
 
+[![Build Status](https://travis-ci.org/edduarte/indexed-diff-match-patch.svg?branch=master)](https://travis-ci.org/edduarte/indexed-diff-match-patch)
+
 The Diff, Match and Patch Library, originally developed by Neil Fraser and hosted at http://code.google.com/p/google-diff-match-patch/, is a library for detecting in-line text differences ('inserted' and 'deleted').
 
-This is a fork of that project that changes multiple parts of the algorithm so that **the diffs returned have a startIndex and a endIndex value**.
+This is a fork of the DiffMatchPatch project that changes multiple parts of the algorithm so that **diffs returned have a startIndex and an endIndex value**.
 
-The main idea behind this fork is to allow a quick retrieval of diff text as-is in the original documents for further parsing purposes. Sentence-splitting can be used to collect the entire sentence where the diff occurred, and ```String.substring()``` can be used to retrieve text surrounding the differed section (snippets). Note that using ```String.indexOf(diffText)``` or ```String.lastIndexOf(diffText)``` after executing the original algorithm would not be a viable solution, since a diff text can often occur multiple times in the same document.
+The main idea behind this fork comes from the fact that character-based index pointers are required for a great majority of NLP tools available (e.g.: sentence-splitters, roi taggers). Using ```String.indexOf(diffText)``` or ```String.lastIndexOf(diffText)``` to obtain these indexes would not be a viable solution, since a diff text can often occur multiple times in the same document.
 
-This has only been implemented for Java (my primary use-case). All of the required changes to add the string index values where made into a single commit, so if you wish to check the changes and adapt them to the other languages supported originally, check here: https://github.com/edduarte/indexed-diff-match-patch/commit/45132be9ac6246a7cb8f574fd26f90bf02d1b294
+Other use cases include sorting diffs by startIndex (so that they are ordered by occurrence in the original document) and using ```String.substring()``` to retrieve text surrounding the differed section (snippets).
 
-## Usage ##
+## Usage
 
-### Maven ###
+### Maven
 ```
 <dependency>
     <groupId>com.edduarte</groupId>
@@ -19,14 +21,14 @@ This has only been implemented for Java (my primary use-case). All of the requir
 </dependency>
 ```
 
-### Gradle ###
+### Gradle
 ```
 dependencies {
     compile 'com.edduarte:diff-match-patch:1.0.0'
 }
 ```
 
-### Example ###
+## Example
 
 ```java
 DiffMatchPatch dmp = new DiffMatchPatch();
@@ -55,12 +57,15 @@ for (Diff d : diffs) {
 }
 ```
 
-You can see this fork in use at https://github.com/vokter/vokter-core.
+
+## Projects using this library
+
+You can see this library in use at https://github.com/vokter/vokter.
 
 
 # License
 
-    Copyright 2015 Eduardo Duarte
+    Copyright 2016 Eduardo Duarte
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
